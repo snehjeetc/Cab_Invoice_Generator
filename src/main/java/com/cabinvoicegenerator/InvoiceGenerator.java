@@ -16,4 +16,10 @@ public class InvoiceGenerator {
             total_fare += calculateFare(ride.getDistance(), ride.getTime());
         return new InvoiceSummary(rides.length, total_fare, total_fare/ rides.length);
     }
+
+    public InvoiceSummary calculateFare(String userId, RideRepository rideRepository) {
+        if(!rideRepository.contains(userId))
+            return null;
+        return calculateFare(rideRepository.toArray(userId));
+    }
 }
